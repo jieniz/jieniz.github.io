@@ -342,81 +342,22 @@
       
         
           
-            <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><h2 id="Characterization-of-distributed-systems"><a href="#Characterization-of-distributed-systems" class="headerlink" title="Characterization of distributed systems"></a>Characterization of distributed systems</h2><ul>
-<li>同步：Components are located on networked computers and execute concurrently.<br></li>
-<li>独立：Components communicate and coordinate only by passing messages.<br></li>
-<li>异时：Time differs on each system.<br></li>
-</ul>
-<h2 id="Four-styles-of-application-integration"><a href="#Four-styles-of-application-integration" class="headerlink" title="Four styles of application integration"></a>Four styles of application integration</h2><p>How does program logic share data or communicate?<br></p>
-<ul>
-<li>文件共享：Shared files<br></li>
-<li>数据库共享：Shared database<br></li>
-<li>远程调用：Procedure Call or Method Invocation (RPC, RMI)<br></li>
-<li>第三方：Messaging through a third party<br></li>
-</ul>
-<h2 id="Synchronous-and-asynchronous-communication"><a href="#Synchronous-and-asynchronous-communication" class="headerlink" title="Synchronous and asynchronous communication"></a>Synchronous and asynchronous communication</h2><ul>
-<li>同步：the client calls, blocks and waits for the response</li>
-<li>异步：the client makes a call and continues with other business</li>
-</ul>
-<h2 id="Communication-Paradigms"><a href="#Communication-Paradigms" class="headerlink" title="Communication Paradigms"></a>Communication Paradigms</h2><ul>
-<li>interprocess: TCP / UDP / Multicast Sockets; low level; coupled in time</li>
-<li>remote: (Two way exchange with a remote operation, procedure or method) RPC, RMI, HTTP, DCOM, CORBA； Higher level abstractions<ul>
-<li>Coupled in time: both parties exist during interaction</li>
-<li>Coupled in space: parties likely know who they are interacting with</li>
-</ul>
-</li>
-<li>Indirect communication: (less tightly coupled and involving a third party) Communicating to a group by sending a message to a group identifier<ul>
-<li>Publish-subscribe (AKA distributed event based systems): routes messages to interested parties. One-to-many style of communication.</li>
-<li>Message queues (AKA channels): for point-to-point messaging. </li>
-<li>Tuple spaces: allows for the placement and withdrawal of structured sequences of data.</li>
-</ul>
-</li>
-</ul>
-<h2 id="Time-and-space-coupling"><a href="#Time-and-space-coupling" class="headerlink" title="Time and space coupling"></a>Time and space coupling</h2><p>Coupling is the degree to which some communicating entity makes assumptions about its partner.</p>
-<ul>
-<li>Coupled in time: both parties exist during interaction</li>
-<li>Coupled in space: parties likely know who they are interacting with</li>
-</ul>
-<h2 id="Layered-architecture"><a href="#Layered-architecture" class="headerlink" title="Layered architecture"></a>Layered architecture</h2><p>vertical organization of services into layers of abstraction </p>
-<ul>
-<li>applications and services layered on the top.</li>
-<li>middleware appears between the application and the operating system.</li>
-<li>The operating system sits on top of the computer and network hardware.</li>
-</ul>
-<h2 id="Tiered-architecture"><a href="#Tiered-architecture" class="headerlink" title="Tiered architecture"></a>Tiered architecture</h2><ul>
-<li>complimentary to layering</li>
-<li>应用层分层：usually applied to the applications and services layer (client-server)</li>
-<li>organize the functionality of a given layer and place this functionality into appropriate servers and onto physical devices.</li>
-<li>presentation logic, business logic, and data logic.</li>
-<li>May partition an application into two tiers or three.<ul>
-<li>2-tier: client-server architecture<ul>
-<li>client: business logic and user interface</li>
-<li>server: data logic layer</li>
-</ul>
-</li>
-<li>3-tier: logic layer correspond directly to the physical machines and processes<ul>
-<li>AJAX application: google maps are fetched as needed</li>
-<li>thin client approach: Move complexity into internet based services (cloud computing)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Main driver: promote separation of concerns.</li>
-</ul>
-<h2 id="Software-engineering-principle-Separation-of-concerns"><a href="#Software-engineering-principle-Separation-of-concerns" class="headerlink" title="Software engineering principle: Separation of concerns"></a>Software engineering principle: Separation of concerns</h2><p>tiered -&gt; prmote seperation of concern -&gt; raise the level of abstraction</p>
-<h2 id="Architectural-patterns"><a href="#Architectural-patterns" class="headerlink" title="Architectural patterns"></a>Architectural patterns</h2><h3 id="Proxy-pattern"><a href="#Proxy-pattern" class="headerlink" title="Proxy pattern"></a>Proxy pattern</h3><p>the client makes calls on a local object (the proxy) that has the same interface as a remote object. The proxy hides the communication details.</p>
-<h3 id="Brokerage-pattern"><a href="#Brokerage-pattern" class="headerlink" title="Brokerage pattern"></a>Brokerage pattern</h3><p>consists of a trio of service provider, service requestor and service broker (typically with lookup and bind operations)</p>
-<h2 id="Challenges-in-constructing-DS"><a href="#Challenges-in-constructing-DS" class="headerlink" title="Challenges in constructing DS"></a>Challenges in constructing DS</h2><p>All the challenges associated with stand alone systems development plus:</p>
-<ul>
-<li>异质阻碍协同：Heterogeneity of components hinders interoperability</li>
-<li>Security：信息资源安全的三个要素：保密性（保护不被未受认证个体取得），整体性（保护不分裂），可利用性（避免干扰）</li>
-<li>Scalability：在增加大量资源和用户的情况下，系统的效率仍能保持不变 </li>
-<li>Failure handling: (networks, processors, remote systems) Independent Failure of components</li>
-<li>Concurrency: adds complexity</li>
-<li>Openness: easy to add to or modify the system</li>
-</ul>
-<h1 id="System-Models"><a href="#System-Models" class="headerlink" title="System Models"></a>System Models</h1><h2 id="Architectural-Models"><a href="#Architectural-Models" class="headerlink" title="Architectural Models"></a>Architectural Models</h2>
-          
+          IntroductionCharacterization of distributed systems
+同步：Components are located on networked computers and execute concurrently.
+独立：Components communicate and coordinate only by passing messages.
+异时：Time differs on each system.
+
+Four styles of application integrationHow does program logic share data or communicate?
+
+文件共享
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/26/95702-midterm1/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -534,17 +475,20 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick StartCreate a new post1$ hexo new "My New Post"
+More info: Writing
+Run server1$ hexo server
+More info: Server
+Generate 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/25/hello-world/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
