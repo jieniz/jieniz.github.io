@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="distributed system," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="IntroductionCharacterization of DS 同步：Components are located on networked computers and execute concurrently. 独立：Components communicate and coordinate only by passing messages. 异时：Time differs on each">
+<meta name="keywords" content="distributed system">
+<meta property="og:type" content="article">
+<meta property="og:title" content="95-702 Distributed System Midterm 1">
+<meta property="og:url" content="http://yoursite.com/2018/09/26/2-95702-midterm1/index.html">
+<meta property="og:site_name" content="小乌龟的日常">
+<meta property="og:description" content="IntroductionCharacterization of DS 同步：Components are located on networked computers and execute concurrently. 独立：Components communicate and coordinate only by passing messages. 异时：Time differs on each">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-28T00:29:06.710Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="95-702 Distributed System Midterm 1">
+<meta name="twitter:description" content="IntroductionCharacterization of DS 同步：Components are located on networked computers and execute concurrently. 独立：Components communicate and coordinate only by passing messages. 异时：Time differs on each">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/26/2-95702-midterm1/"/>
+
+
+
+
+
+  <title>95-702 Distributed System Midterm 1 | 小乌龟的日常</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小乌龟的日常</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">尝龟操作</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/26/2-95702-midterm1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jieni Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小乌龟的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">95-702 Distributed System Midterm 1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-26T21:43:29-04:00">
+                2018-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/95-702-Distributed-System/" itemprop="url" rel="index">
+                    <span itemprop="name">95-702 Distributed System</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><h2 id="Characterization-of-DS"><a href="#Characterization-of-DS" class="headerlink" title="Characterization of DS"></a>Characterization of DS</h2><ul>
+<li>同步：Components are located on networked computers and execute concurrently.<br></li>
+<li>独立：Components communicate and coordinate only by passing messages.<br></li>
+<li>异时：Time differs on each system.<br></li>
+</ul>
+<h2 id="Four-styles-of-application-integration"><a href="#Four-styles-of-application-integration" class="headerlink" title="Four styles of application integration"></a>Four styles of application integration</h2><p>How does program logic share data or communicate?<br></p>
+<ul>
+<li>文件共享：Shared files<br></li>
+<li>数据库共享：Shared database<br></li>
+<li>远程调用：Procedure Call or Method Invocation (RPC, RMI)<br></li>
+<li>第三方：Messaging through a third party<br></li>
+</ul>
+<h2 id="Synchronous-and-asynchronous-communication"><a href="#Synchronous-and-asynchronous-communication" class="headerlink" title="Synchronous and asynchronous communication"></a>Synchronous and asynchronous communication</h2><ul>
+<li>同步：client发消息, 等待, 限定各种bound</li>
+<li>异步：client发消息, 然后继续放飞，不限定任何bound</li>
+</ul>
+<h2 id="Communication-Paradigms"><a href="#Communication-Paradigms" class="headerlink" title="Communication Paradigms"></a>Communication Paradigms</h2><ul>
+<li>Interprocess: <ul>
+<li>low level</li>
+<li>coupled in time</li>
+<li>TCP / UDP / Multicast Sockets</li>
+</ul>
+</li>
+<li>Remote: Two way exchange with a remote operation, procedure or method<ul>
+<li>Higher level abstractions</li>
+<li>coupled in time / space</li>
+<li>RPC: Remote procedure calls, call procedures in processes on remote computers</li>
+<li>RMI: Remote method invocation, invoke a method in a remote object</li>
+<li>HTTP, DCOM, CORBA</li>
+</ul>
+</li>
+<li>Indirect communication: less tightly coupled and involving a third party<ul>
+<li>Publish-subscribe (AKA distributed event based systems): routes messages to interested parties. One-to-many style of communication.</li>
+<li>Message queues (AKA channels): for point-to-point messaging. </li>
+<li>Tuple spaces: allows for the placement and withdrawal of structured sequences of data.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Time-and-space-coupling"><a href="#Time-and-space-coupling" class="headerlink" title="Time and space coupling"></a>Time and space coupling</h2><p>Coupling is the degree to which some communicating entity makes assumptions about its partner.</p>
+<ul>
+<li>Coupled in time: 双方同时存在</li>
+<li>Coupled in space: 知道对方是谁 </li>
+</ul>
+<h2 id="Layered-architecture"><a href="#Layered-architecture" class="headerlink" title="Layered architecture"></a>Layered architecture</h2><p>vertical: the separation of concerns found in a model, view, controller design pattern.</p>
+<ul>
+<li>applications and services layered on the top.</li>
+<li>middleware appears between the application and the operating system.</li>
+<li>The operating system sits on top of the computer and network hardware.</li>
+</ul>
+<h2 id="Tiered-architecture"><a href="#Tiered-architecture" class="headerlink" title="Tiered architecture"></a>Tiered architecture</h2><p>complimentary to layering</p>
+<ul>
+<li>应用层：usually applied to the applications and services layer (client-server)</li>
+<li>水平分层：organize the functionality of a given layer and place this functionality into appropriate servers and onto physical devices</li>
+<li>include: presentation logic, business logic, and data logic<ul>
+<li>client: business logic and user interface</li>
+<li>server: data logic layer</li>
+</ul>
+</li>
+<li>partition: application into two tiers or three.<ul>
+<li>2-tier: client-server architecture design patterns<ul>
+<li>request/response: 一来一回<ul>
+<li>/client/ -&gt; request -&gt; /server/ -&gt; response -&gt; /client/</li>
+</ul>
+</li>
+<li>request/acknowledge: 一来一回，server认证<ul>
+<li>/client/ -&gt; request -&gt; /server/ anthentication -&gt; acknowledgement -&gt; /client/</li>
+</ul>
+</li>
+<li>request/acknowledge/poll: 两次请求，第一次放入数据库，第二次拉回<ul>
+<li>/client/ -&gt; request -&gt; /service1/ -&gt; save -&gt;/database/ -&gt; acknowledge -&gt; /client/</li>
+<li>/client/ -&gt; poll request-&gt; /service2/ -&gt; query for data -&gt; /database/ -&gt; data -&gt; /service2/ -&gt; response -&gt; /client/</li>
+</ul>
+</li>
+<li>request/acknowledge/callback: 一次请求，server后台与callback交互<ul>
+<li>/client/ -&gt; request -&gt; /service/ -&gt; process -&gt; /callback processor/</li>
+<li>/service/ -&gt; acknowledge -&gt; /client/</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>3-tier: logic layer correspond directly to the physical machines and processes<ul>
+<li>AJAX application: google maps are fetched as needed</li>
+<li>thin client approach: Move complexity into internet based services (cloud computing)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Main driver: promote separation of concerns.</li>
+</ul>
+<h2 id="Software-engineering-principle-Separation-of-concerns"><a href="#Software-engineering-principle-Separation-of-concerns" class="headerlink" title="Software engineering principle: Separation of concerns"></a>Software engineering principle: Separation of concerns</h2><p>tiered -&gt; prmote seperation of concern -&gt; raise the level of abstraction</p>
+<h2 id="Architectural-patterns"><a href="#Architectural-patterns" class="headerlink" title="Architectural patterns"></a>Architectural patterns</h2><h3 id="Proxy-pattern"><a href="#Proxy-pattern" class="headerlink" title="Proxy pattern"></a>Proxy pattern</h3><p>the client makes calls on a local object (the proxy) that has the same interface as a remote object. The proxy hides the communication details.</p>
+<h3 id="Brokerage-pattern"><a href="#Brokerage-pattern" class="headerlink" title="Brokerage pattern"></a>Brokerage pattern</h3><p>consists of a trio of service provider, service requestor and service broker (typically with lookup and bind operations)</p>
+<h2 id="Challenges-in-constructing-DS"><a href="#Challenges-in-constructing-DS" class="headerlink" title="Challenges in constructing DS"></a>Challenges in constructing DS</h2><p>All the challenges associated with stand alone systems development plus:(Pony Express)</p>
+<ul>
+<li>Heterogeneity: hinders interoperability 异质阻碍协同 (geography)</li>
+<li>Security (robber)</li>
+<li>Scalability / bandwidth：在增加大量资源和用户的情况下，系统的效率仍能保持不变 (letter/horse)</li>
+<li>Failure handling: (networks, processors, remote systems) Independent Failure of components</li>
+<li>Concurrency: adds complexity</li>
+<li>Openness: easy to add to or modify the system</li>
+</ul>
+<h1 id="System-Models"><a href="#System-Models" class="headerlink" title="System Models"></a>System Models</h1><h2 id="Architectural-Models"><a href="#Architectural-Models" class="headerlink" title="Architectural Models"></a>Architectural Models</h2><h2 id="Foundamentals-Models"><a href="#Foundamentals-Models" class="headerlink" title="Foundamentals Models"></a>Foundamentals Models</h2><ul>
+<li>Interaction Model</li>
+<li>Failure Model</li>
+<li>Security Model</li>
+</ul>
+<h2 id="Pepperland"><a href="#Pepperland" class="headerlink" title="Pepperland"></a>Pepperland</h2><h3 id="Agreement"><a href="#Agreement" class="headerlink" title="Agreement"></a>Agreement</h3><p>将交流双方的latency控制在（max - min + 1）内。<br>A 和 B 准备一起打 C ，但是 A B 隔太远，又没有电话，只能靠人马。就约定好，A 发出攻击指令后，等待 MIN ，然后就出发；而 B 收到攻击指令后，等待 1 秒后出发。</p>
+<h3 id="Failure-Detection"><a href="#Failure-Detection" class="headerlink" title="Failure Detection"></a>Failure Detection</h3><p>双方无法同时知道交流失败了。</p>
+<h2 id="JEE"><a href="#JEE" class="headerlink" title="JEE"></a>JEE</h2><p>Java Enterprise Edition: platform (i.e. set of classes) for building distributed systems in Java</p>
+<h3 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h3><ul>
+<li>model: POJO / Plain Ordinary Java Object 简单的java对象</li>
+<li>view: JSP/ Java Server Pages 服务器页面</li>
+<li>controller: HTTP Servlet 服务器端程序</li>
+</ul>
+<h3 id="container-amp-web-container"><a href="#container-amp-web-container" class="headerlink" title="container &amp; web container"></a>container &amp; web container</h3><ul>
+<li>container: 所有软件打包到容器中<ul>
+<li>docker: immutability -&gt; allow version control of docker images</li>
+</ul>
+</li>
+<li>web container: aka. servlet container, handle servlet and jsp, sit between controller and view</li>
+</ul>
+<h2 id="WWW"><a href="#WWW" class="headerlink" title="WWW"></a>WWW</h2><h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><ul>
+<li>headers<ul>
+<li>request: GET /course/95-702 HTTP/1.1</li>
+<li>response: HTTP/1.1 200 OK</li>
+</ul>
+</li>
+<li>operations<ul>
+<li>safe: 不改变资源状态的操作，GET / HEAD（登录，缓存也算safe)</li>
+<li>idempotent: 多个请求和一个的结果一样, safe的 / PUT / DELETE</li>
+</ul>
+</li>
+</ul>
+<h3 id="URI’s"><a href="#URI’s" class="headerlink" title="URI’s"></a>URI’s</h3><h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><h1 id="Networking-and-Internetworking"><a href="#Networking-and-Internetworking" class="headerlink" title="Networking and Internetworking"></a>Networking and Internetworking</h1><h2 id="Application-Protocols"><a href="#Application-Protocols" class="headerlink" title="Application Protocols"></a>Application Protocols</h2><p>进程间为了交流而制定的一系列规则: (1)消息序列中的某一部分一定被交换了, (2)消息含有特定格式的数据</p>
+<h3 id="HTTP-1"><a href="#HTTP-1" class="headerlink" title="HTTP"></a>HTTP</h3><p>Browser to server, web app to web service, etc.</p>
+<h3 id="DHCP"><a href="#DHCP" class="headerlink" title="DHCP"></a>DHCP</h3><p>Dynamic Host Configuration Protocol：server assigns IP address to a host 动态的在可用的子网区间内获取host的IP地址</p>
+<h3 id="ARP"><a href="#ARP" class="headerlink" title="ARP"></a>ARP</h3><p>Address Resolution Protocol: 在本地网络转换 host 的 IP 地址和 mac 地址</p>
+<ul>
+<li>每个 host 都有 ARP 模块, 存储 mac / IP address pairs</li>
+<li>已知 H2 IP address, host H1 想连接 H2，H1 查缓存，看是否存在pair<ul>
+<li>yes: 直接用 H2 mac address</li>
+<li>no: broadcast IP address, H2 match IP 返回自己的 mac address, H1 把mapping加入缓存</li>
+</ul>
+</li>
+</ul>
+<h2 id="Ports-and-Port-Assignment"><a href="#Ports-and-Port-Assignment" class="headerlink" title="Ports and Port Assignment"></a>Ports and Port Assignment</h2><ul>
+<li>端口: 信息传送时主机的一个终点, 指定信息发送到某个目标节点的特定程序。</li>
+<li>分配：<ul>
+<li>0 to 1023: Well Known Ports<ul>
+<li>Should not be used without IANA registration </li>
+<li>Loosely, system-type-services ports</li>
+<li>80: HTTP port</li>
+</ul>
+</li>
+<li>1024 to 49151: Registered Ports<ul>
+<li>Should not be used without IANA registration </li>
+<li>Loosely, application-level ports</li>
+</ul>
+</li>
+<li>49152 to 65535: Dynamic and/or Private Ports – Anything</li>
+</ul>
+</li>
+</ul>
+<h2 id="Addressing"><a href="#Addressing" class="headerlink" title="Addressing"></a>Addressing</h2><ul>
+<li>IP: 网络中的每个主机都分配了一个 IP 号码，可以用来识别特定主机以及其连接的子网。</li>
+<li>MAC: 每个及其都有一个唯一的 MAC 地址，由厂家分配。</li>
+</ul>
+<h2 id="Datagram"><a href="#Datagram" class="headerlink" title="Datagram"></a>Datagram</h2><p>包交换网络中传输的最小单位</p>
+<ul>
+<li>one-shot 过程：不用任何设置，一旦发送了就不管了。所以是 unreliable。</li>
+<li>IP datagram: contains the IP address of the destination host.</li>
+</ul>
+<h2 id="Protocol-Layers"><a href="#Protocol-Layers" class="headerlink" title="Protocol Layers"></a>Protocol Layers</h2><p>由下到上，由内向外</p>
+<h3 id="Application-Layer"><a href="#Application-Layer" class="headerlink" title="Application Layer"></a>Application Layer</h3><p>HTTP request / response</p>
+<ul>
+<li>abstraction: </li>
+<li>addressing: GET /hi.html HTTP/1.1 or HTTP/1.1 200 OK</li>
+</ul>
+<h3 id="Transport-Layer"><a href="#Transport-Layer" class="headerlink" title="Transport Layer"></a>Transport Layer</h3><p>TCP / UDP socket</p>
+<ul>
+<li>abstraction: </li>
+<li>addressing: port</li>
+</ul>
+<p>TCP / UDP Compared</p>
+<ul>
+<li>TCP：面向连接的协议。打电话，一头连另一头。速度慢。有顺序。有很多头部信息。可靠。</li>
+<li>UDP：面向数据的协议，不管连接。寄信一样，写了地址扔邮筒我们就无法掌控它了。速度快。没顺序。没啥头要包起来的。不可靠，容易丢包。</li>
+</ul>
+<h3 id="Internet-Layer"><a href="#Internet-Layer" class="headerlink" title="Internet Layer"></a>Internet Layer</h3><p>IP协议</p>
+<ul>
+<li>abstraction: Single IP Datagram from one Internet host to another Internet host</li>
+<li>addressing: IP address</li>
+</ul>
+<h3 id="Data-Link-Layer"><a href="#Data-Link-Layer" class="headerlink" title="Data Link Layer"></a>Data Link Layer</h3><p>Ethernet</p>
+<ul>
+<li>abstraction: Single frame from one host to another host ON THE SAME NETWORK.</li>
+<li>addressing: MAC address</li>
+</ul>
+<h2 id="RIP-algorithm"><a href="#RIP-algorithm" class="headerlink" title="RIP algorithm"></a>RIP algorithm</h2><p>Routing: 两点之间的路径，路由器里存储路径表，包含了网络中本地到网络中所有节点的距离（成本）<br>RIP / Routing Information Protocol: 用于更新路由器的路径表的简单算法</p>
+<ul>
+<li>每当自己的路径表改变了，就把表发送到所有邻居。</li>
+<li>当从附近路由器收到一张表，如果出现了一个新终点，或者出现了比现有成本更小的路径，则更新表。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/distributed-system/" rel="tag"># distributed system</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/25/1-hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/28/3-11601-coin-on-the-table/" rel="prev" title="11-601 Coin on the Table">
+                11-601 Coin on the Table <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jieni Zhang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Characterization-of-DS"><span class="nav-number">1.1.</span> <span class="nav-text">Characterization of DS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Four-styles-of-application-integration"><span class="nav-number">1.2.</span> <span class="nav-text">Four styles of application integration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Synchronous-and-asynchronous-communication"><span class="nav-number">1.3.</span> <span class="nav-text">Synchronous and asynchronous communication</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Communication-Paradigms"><span class="nav-number">1.4.</span> <span class="nav-text">Communication Paradigms</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Time-and-space-coupling"><span class="nav-number">1.5.</span> <span class="nav-text">Time and space coupling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Layered-architecture"><span class="nav-number">1.6.</span> <span class="nav-text">Layered architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tiered-architecture"><span class="nav-number">1.7.</span> <span class="nav-text">Tiered architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Software-engineering-principle-Separation-of-concerns"><span class="nav-number">1.8.</span> <span class="nav-text">Software engineering principle: Separation of concerns</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Architectural-patterns"><span class="nav-number">1.9.</span> <span class="nav-text">Architectural patterns</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Proxy-pattern"><span class="nav-number">1.9.1.</span> <span class="nav-text">Proxy pattern</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Brokerage-pattern"><span class="nav-number">1.9.2.</span> <span class="nav-text">Brokerage pattern</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Challenges-in-constructing-DS"><span class="nav-number">1.10.</span> <span class="nav-text">Challenges in constructing DS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#System-Models"><span class="nav-number">2.</span> <span class="nav-text">System Models</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Architectural-Models"><span class="nav-number">2.1.</span> <span class="nav-text">Architectural Models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Foundamentals-Models"><span class="nav-number">2.2.</span> <span class="nav-text">Foundamentals Models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pepperland"><span class="nav-number">2.3.</span> <span class="nav-text">Pepperland</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Agreement"><span class="nav-number">2.3.1.</span> <span class="nav-text">Agreement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Failure-Detection"><span class="nav-number">2.3.2.</span> <span class="nav-text">Failure Detection</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JEE"><span class="nav-number">2.4.</span> <span class="nav-text">JEE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MVC"><span class="nav-number">2.4.1.</span> <span class="nav-text">MVC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#container-amp-web-container"><span class="nav-number">2.4.2.</span> <span class="nav-text">container &amp; web container</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WWW"><span class="nav-number">2.5.</span> <span class="nav-text">WWW</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP"><span class="nav-number">2.5.1.</span> <span class="nav-text">HTTP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URI’s"><span class="nav-number">2.5.2.</span> <span class="nav-text">URI’s</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML"><span class="nav-number">2.5.3.</span> <span class="nav-text">HTML</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Networking-and-Internetworking"><span class="nav-number">3.</span> <span class="nav-text">Networking and Internetworking</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Application-Protocols"><span class="nav-number">3.1.</span> <span class="nav-text">Application Protocols</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-1"><span class="nav-number">3.1.1.</span> <span class="nav-text">HTTP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DHCP"><span class="nav-number">3.1.2.</span> <span class="nav-text">DHCP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARP"><span class="nav-number">3.1.3.</span> <span class="nav-text">ARP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ports-and-Port-Assignment"><span class="nav-number">3.2.</span> <span class="nav-text">Ports and Port Assignment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Addressing"><span class="nav-number">3.3.</span> <span class="nav-text">Addressing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Datagram"><span class="nav-number">3.4.</span> <span class="nav-text">Datagram</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Protocol-Layers"><span class="nav-number">3.5.</span> <span class="nav-text">Protocol Layers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Application-Layer"><span class="nav-number">3.5.1.</span> <span class="nav-text">Application Layer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transport-Layer"><span class="nav-number">3.5.2.</span> <span class="nav-text">Transport Layer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Internet-Layer"><span class="nav-number">3.5.3.</span> <span class="nav-text">Internet Layer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Link-Layer"><span class="nav-number">3.5.4.</span> <span class="nav-text">Data Link Layer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RIP-algorithm"><span class="nav-number">3.6.</span> <span class="nav-text">RIP algorithm</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jieni Zhang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
