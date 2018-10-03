@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="DOMdocument object model: a tree of nodes that represents the HTML document Navigate DOM with JSGiven an element node,navigate the tree:  node.parentNode, node.firstChild, node.lastChild, node.childNo">
+<meta name="description" content="Javascriptserver-side web application:  web application 只在web server中运行 browser 每次只能发送一个request，每收到一个response都要重新展示页面re-render/re-load  client-side web application:  web application 可以在broswer和server中">
 <meta name="keywords" content="web application">
 <meta property="og:type" content="article">
 <meta property="og:title" content="17-637 Web Application Development 笔记">
 <meta property="og:url" content="http://yoursite.com/2018/10/03/4-17637-class-note/index.html">
 <meta property="og:site_name" content="小乌龟的日常">
-<meta property="og:description" content="DOMdocument object model: a tree of nodes that represents the HTML document Navigate DOM with JSGiven an element node,navigate the tree:  node.parentNode, node.firstChild, node.lastChild, node.childNo">
+<meta property="og:description" content="Javascriptserver-side web application:  web application 只在web server中运行 browser 每次只能发送一个request，每收到一个response都要重新展示页面re-render/re-load  client-side web application:  web application 可以在broswer和server中">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-03T05:23:26.420Z">
+<meta property="og:updated_time" content="2018-10-03T17:17:21.836Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="17-637 Web Application Development 笔记">
-<meta name="twitter:description" content="DOMdocument object model: a tree of nodes that represents the HTML document Navigate DOM with JSGiven an element node,navigate the tree:  node.parentNode, node.firstChild, node.lastChild, node.childNo">
+<meta name="twitter:description" content="Javascriptserver-side web application:  web application 只在web server中运行 browser 每次只能发送一个request，每收到一个response都要重新展示页面re-render/re-load  client-side web application:  web application 可以在broswer和server中">
 
 
 
@@ -347,23 +347,7 @@
       
 
       
-        <h1 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h1><p>document object model: a tree of nodes that represents the HTML document</p>
-<h2 id="Navigate-DOM-with-JS"><a href="#Navigate-DOM-with-JS" class="headerlink" title="Navigate DOM with JS"></a>Navigate DOM with JS</h2><p>Given an element node,<br>navigate the tree:</p>
-<ul>
-<li>node.parentNode, node.firstChild, node.lastChild, node.childNodes</li>
-<li>node.nextSibling, node.previousSibling</li>
-</ul>
-<p>access/modify properties:</p>
-<ul>
-<li>nodeName, nodeType, attributes, getAttribute(attr), id, innerHTML</li>
-<li>offsetLeft, offsetTop, offsetParent</li>
-</ul>
-<p>get a DOM node:</p>
-<ul>
-<li>document.getElementById(id) / ByTagName(name) / ByClassName(name)</li>
-<li>遍历DOM树, id 唯一，tag和class一般不唯一，返回 array of nodes<br><br></li>
-</ul>
-<h1 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h1><p>server-side web application:</p>
+        <h1 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h1><p>server-side web application:</p>
 <ul>
 <li>web application 只在web server中运行</li>
 <li>browser 每次只能发送一个request，每收到一个response都要重新展示页面re-render/re-load</li>
@@ -382,7 +366,24 @@
 </li>
 <li>respond to in-browser events: onclick, onload, onfocus, onblur…</li>
 </ul>
-<p>Tutorial: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide</a></p>
+<p>Tutorial: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide</a><br></p>
+<h1 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h1><p>document object model: a tree of nodes that represents the HTML document</p>
+<h2 id="Navigate-DOM-with-JS"><a href="#Navigate-DOM-with-JS" class="headerlink" title="Navigate DOM with JS"></a>Navigate DOM with JS</h2><p>Given an element node,<br>navigate the tree:</p>
+<ul>
+<li>node.parentNode / firstChild / lastChild / childNodes / appendChild(newNode)</li>
+<li>node.nextSibling, node.previousSibling</li>
+</ul>
+<p>access/modify properties:</p>
+<ul>
+<li>node.nodeName / nodeType/ attributes / getAttribute(attr) / setAttribute(attr, val) / id / innerHTML</li>
+<li>node.offsetLeft / offsetTop / offsetParent</li>
+<li>node.addEventListener(event, fxt)</li>
+</ul>
+<p>get a DOM node:</p>
+<ul>
+<li>document.getElementById(id) / ByTagName(name) / ByClassName(name) / createElement(tagName)</li>
+<li>遍历DOM树, id 唯一，tag和class一般不唯一，返回 array of nodes<br><br></li>
+</ul>
 
       
     </div>
@@ -553,7 +554,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DOM"><span class="nav-number">1.</span> <span class="nav-text">DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Navigate-DOM-with-JS"><span class="nav-number">1.1.</span> <span class="nav-text">Navigate DOM with JS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Javascript"><span class="nav-number">2.</span> <span class="nav-text">Javascript</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Javascript"><span class="nav-number">1.</span> <span class="nav-text">Javascript</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DOM"><span class="nav-number">2.</span> <span class="nav-text">DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Navigate-DOM-with-JS"><span class="nav-number">2.1.</span> <span class="nav-text">Navigate DOM with JS</span></a></li></ol></li></ol></div>
             
 
           </div>
