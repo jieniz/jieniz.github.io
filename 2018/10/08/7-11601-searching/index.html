@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="小乌龟的日常">
 <meta property="og:description" content="CC Chapter 4 Trees and Graphs4.1 Route Between NodesInput(directed) Graph g, Node start, Node end Output判断两点之间是否有通路 Pseudo Code enum State { unvisited, visiting, visited } 遍历graph, 设置node.state=State.">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-09T04:03:18.863Z">
+<meta property="og:updated_time" content="2018-10-09T16:05:48.979Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="11-601 Coding Bootcamp -- Searching">
 <meta name="twitter:description" content="CC Chapter 4 Trees and Graphs4.1 Route Between NodesInput(directed) Graph g, Node start, Node end Output判断两点之间是否有通路 Pseudo Code enum State { unvisited, visiting, visited } 遍历graph, 设置node.state=State.">
@@ -486,7 +486,89 @@
 </ul>
 </li>
 </ul>
-
+<h2 id="4-8-First-Common-Ancestor"><a href="#4-8-First-Common-Ancestor" class="headerlink" title="4.8 First Common Ancestor"></a>4.8 First Common Ancestor</h2><h3 id="Input-7"><a href="#Input-7" class="headerlink" title="Input"></a>Input</h3><p>一个二叉树中的根root, 两个节点 p, q</p>
+<h3 id="Output-7"><a href="#Output-7" class="headerlink" title="Output"></a>Output</h3><p>第一个共同的父节点（要求：不存储多余节点）</p>
+<h3 id="Pseudo-Code-7"><a href="#Pseudo-Code-7" class="headerlink" title="Pseudo Code"></a>Pseudo Code</h3><ul>
+<li>Ancestor类：<ul>
+<li>fields: Node, isAncestor</li>
+<li>constructor: Ancestor(Node n, boolean isAncestor)</li>
+</ul>
+</li>
+<li>如果ancHelper(root, p, q).isAncestor, return node, 否则return null</li>
+<li>Method: Ancestor ancHelper(TreeNode root, p, q)<ul>
+<li>if root == null, return new Ancestor(null, false)</li>
+<li>三个点是同一个：if root == p &amp;&amp; root == q, return new Ancestor(root, true)</li>
+<li>向左：rx = ancHelper(root.left, p, q), 如果rx是ancestor, return 这个点</li>
+<li>向右：ry = ancHelper(root.right, p, q), 如果ry是ancestor, return 这个点</li>
+<li>如果都不为空说明找到了 rx.node != null &amp;&amp; ry.node != null, return new Ancestor(root, true)</li>
+<li>如果root是q或者p，表示我们现在在p或q，且另一个在subtree，说明也找到，return new Ancestor(root, rx.node != null || ry.node != null)</li>
+<li>else: return new Ancestor(rx.node != null ? rx.node : ry.node, false)</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-9-BST-Sequences"><a href="#4-9-BST-Sequences" class="headerlink" title="4.9 BST Sequences"></a>4.9 BST Sequences</h2><h3 id="Input-8"><a href="#Input-8" class="headerlink" title="Input"></a>Input</h3><p>Binary search tree（元素唯一）的根节点 TreeNode root</p>
+<h3 id="Output-8"><a href="#Output-8" class="headerlink" title="Output"></a>Output</h3><p>所有可能生成这个BST的array, ArrayList&lt;LinkedList&lt;Integer>></p>
+<h3 id="Pseudo-Code-8"><a href="#Pseudo-Code-8" class="headerlink" title="Pseudo Code"></a>Pseudo Code</h3><ul>
+<li>allSeq(TreeNode root)<ul>
+<li>新建ArrayList result存放结果，如果node是空，向数组中加入一个空的linkedlist，然后返回arraylist</li>
+<li>新建LinkedList&lt;Integer> prefix，把node加入list</li>
+<li>左右树分别迭代，遍历树：<ul>
+<li>ArrayList&lt;…> leftSeq = allSeq(root.left)</li>
+<li>ArrayList&lt;…> rightSeq = allSeq(root.right)</li>
+</ul>
+</li>
+<li>循环所有生成的list，调用weaveList方法，把所有list按照由左向右的方式交织<ul>
+<li>for(left : leftSeq)<ul>
+<li>for(right : rightSeq)<ul>
+<li>建ArrayList&lt;Link…> weaved</li>
+<li>传入方法weaveLists(left, right,weaved, prefix)</li>
+<li>把每一个weaved 加入result</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>weaveLists(LinkedList first, LinkedList second, ArrayList results, LinkedList prefix)<ul>
+<li>如果fisrt或second其中一个size为0<ul>
+<li>result=prefix.clone()，然后add first, second, </li>
+<li>把result加入results中，返回</li>
+</ul>
+</li>
+<li>依次拿出first中的每个元素，迭代weaveLists<ul>
+<li>head=first.removeFirst(), 把head加入prefix</li>
+<li>迭代weaveLists(first, second, results, prefix)</li>
+<li>把head放回去，prefix.removeLast(), first.addFirst(head)</li>
+</ul>
+</li>
+<li>依次拿出Second中的每个元素，迭代weaveLists</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-10-Check-SubTree"><a href="#4-10-Check-SubTree" class="headerlink" title="4.10 Check SubTree"></a>4.10 Check SubTree</h2><h3 id="Input-9"><a href="#Input-9" class="headerlink" title="Input"></a>Input</h3><p>TreeNode T1, TreeNode T2, 其中T1比T2大很多</p>
+<h3 id="Output-9"><a href="#Output-9" class="headerlink" title="Output"></a>Output</h3><p>判断T2是不是T1的subtree</p>
+<h3 id="Pseudo-Code-9"><a href="#Pseudo-Code-9" class="headerlink" title="Pseudo Code"></a>Pseudo Code</h3><p>遍历T1看能否找到T2</p>
+<ul>
+<li>boolean containsTree(t1, t2)<ul>
+<li>如果 t2 是空，return true, 空树永远是子树</li>
+<li>return subTree(t1, t2)</li>
+</ul>
+</li>
+<li>boolean subTree(t1, t2)<ul>
+<li>如果t1是空，说明没找到，return false</li>
+<li>如果</li>
+</ul>
+</li>
+<li>boolean matchTree(t1, t2)<ul>
+<li>如果t1, t2都是空，empty subtree，return true</li>
+<li>如果t1是空，或者t2是空，或者t1 t2的data不相等，return false</li>
+<li>else迭代，return matchTree(r1.left, r2.left) &amp;&amp; matchTree(r1.right, r2.right)</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-11-Random-Node"><a href="#4-11-Random-Node" class="headerlink" title="4.11 Random Node"></a>4.11 Random Node</h2><h2 id="4-12-Paths-with-Sum"><a href="#4-12-Paths-with-Sum" class="headerlink" title="4.12 Paths with Sum"></a>4.12 Paths with Sum</h2>
       
     </div>
     
@@ -658,7 +740,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CC-Chapter-4-Trees-and-Graphs"><span class="nav-number">1.</span> <span class="nav-text">CC Chapter 4 Trees and Graphs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-Route-Between-Nodes"><span class="nav-number">1.1.</span> <span class="nav-text">4.1 Route Between Nodes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input"><span class="nav-number">1.1.1.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output"><span class="nav-number">1.1.2.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pseudo-Code"><span class="nav-number">1.1.3.</span> <span class="nav-text">Pseudo Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-Minimal-Tree"><span class="nav-number">1.2.</span> <span class="nav-text">4.2 Minimal Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pseudo-Code-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">Pseudo Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-List-of-Depths"><span class="nav-number">1.3.</span> <span class="nav-text">4.3 List of Depths</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pseudo-Code-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">Pseudo Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-Check-Balanced"><span class="nav-number">1.4.</span> <span class="nav-text">4.4 Check Balanced</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-3"><span class="nav-number">1.4.1.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-3"><span class="nav-number">1.4.2.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pseudo-Code-3"><span class="nav-number">1.4.3.</span> <span class="nav-text">Pseudo Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-Validate-BST"><span class="nav-number">1.5.</span> <span class="nav-text">4.5 Validate BST</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-4"><span class="nav-number">1.5.1.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-4"><span class="nav-number">1.5.2.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pseudo-Code-4"><span class="nav-number">1.5.3.</span> <span class="nav-text">Pseudo Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-Successor"><span class="nav-number">1.6.</span> <span class="nav-text">4.6 Successor</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-5"><span class="nav-number">1.6.1.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-5"><span class="nav-number">1.6.2.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pseudo-Code-5"><span class="nav-number">1.6.3.</span> <span class="nav-text">Pseudo Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-7-Build-Order"><span class="nav-number">1.7.</span> <span class="nav-text">4.7 Build Order</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-6"><span class="nav-number">1.7.1.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-6"><span class="nav-number">1.7.2.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pseudo-Code-6"><span class="nav-number">1.7.3.</span> <span class="nav-text">Pseudo Code</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CC-Chapter-4-Trees-and-Graphs"><span class="nav-number">1.</span> <span class="nav-text">CC Chapter 4 Trees and Graphs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-Route-Between-Nodes"><span class="nav-number">1.1.</span> <span class="nav-text">4.1 Route Between Nodes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input"><span class="nav-number">1.1.1.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output"><span class="nav-number">1.1.2.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pseudo-Code"><span class="nav-number">1.1.3.</span> <span class="nav-text">Pseudo Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-Minimal-Tree"><span class="nav-number">1.2.</span> <span class="nav-text">4.2 Minimal Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pseudo-Code-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">Pseudo Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-List-of-Depths"><span class="nav-number">1.3.</span> <span class="nav-text">4.3 List of Depths</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pseudo-Code-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">Pseudo Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-Check-Balanced"><span class="nav-number">1.4.</span> <span class="nav-text">4.4 Check Balanced</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-3"><span class="nav-number">1.4.1.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-3"><span class="nav-number">1.4.2.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pseudo-Code-3"><span class="nav-number">1.4.3.</span> <span class="nav-text">Pseudo Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-Validate-BST"><span class="nav-number">1.5.</span> <span class="nav-text">4.5 Validate BST</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-4"><span class="nav-number">1.5.1.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-4"><span class="nav-number">1.5.2.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pseudo-Code-4"><span class="nav-number">1.5.3.</span> <span class="nav-text">Pseudo Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-Successor"><span class="nav-number">1.6.</span> <span class="nav-text">4.6 Successor</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-5"><span class="nav-number">1.6.1.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-5"><span class="nav-number">1.6.2.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pseudo-Code-5"><span class="nav-number">1.6.3.</span> <span class="nav-text">Pseudo Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-7-Build-Order"><span class="nav-number">1.7.</span> <span class="nav-text">4.7 Build Order</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-6"><span class="nav-number">1.7.1.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-6"><span class="nav-number">1.7.2.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pseudo-Code-6"><span class="nav-number">1.7.3.</span> <span class="nav-text">Pseudo Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-8-First-Common-Ancestor"><span class="nav-number">1.8.</span> <span class="nav-text">4.8 First Common Ancestor</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-7"><span class="nav-number">1.8.1.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-7"><span class="nav-number">1.8.2.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pseudo-Code-7"><span class="nav-number">1.8.3.</span> <span class="nav-text">Pseudo Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-9-BST-Sequences"><span class="nav-number">1.9.</span> <span class="nav-text">4.9 BST Sequences</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-8"><span class="nav-number">1.9.1.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-8"><span class="nav-number">1.9.2.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pseudo-Code-8"><span class="nav-number">1.9.3.</span> <span class="nav-text">Pseudo Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-10-Check-SubTree"><span class="nav-number">1.10.</span> <span class="nav-text">4.10 Check SubTree</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-9"><span class="nav-number">1.10.1.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-9"><span class="nav-number">1.10.2.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pseudo-Code-9"><span class="nav-number">1.10.3.</span> <span class="nav-text">Pseudo Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-11-Random-Node"><span class="nav-number">1.11.</span> <span class="nav-text">4.11 Random Node</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-12-Paths-with-Sum"><span class="nav-number">1.12.</span> <span class="nav-text">4.12 Paths with Sum</span></a></li></ol></li></ol></div>
             
 
           </div>
