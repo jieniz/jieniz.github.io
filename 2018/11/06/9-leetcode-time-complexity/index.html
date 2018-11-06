@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="coding bootcamp,bit manipulation," />
+  <meta name="keywords" content="leetcode,time complexity," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="知识点basic operators对bit进行操作, 0或1  NOT: ～ 取反 AND: &amp;amp; 必须全是1 OR: | 至少一个是1 XOR: ^ 不同是1，相同是0 Left Shift: &amp;lt;&amp;lt; N 左移N位，空位补0，N是整数 Logical Right Shift: &amp;gt;&amp;gt;&amp;gt; N 右移N位，空位补0 Arithmetic Right Shift: &amp;g">
-<meta name="keywords" content="coding bootcamp,bit manipulation">
+<meta name="description" content="树形分析法：逐层分析，最后累加 T(N) = T(N/2) + O(1)T(N) = T(N/2) + O(1) = T(N/4) + 2O(1) = T(N/8) + 3O(1) = … = T(1) + logN*O(1) = O(logN)  解释：把规模为N的问题(T(N))分解为T(N/2)需要花费O(1)的时间，把T(N/2)分解为T(N/4)需要花费O(1)，把T(N/4)分解为T(">
+<meta name="keywords" content="leetcode,time complexity">
 <meta property="og:type" content="article">
-<meta property="og:title" content="11-601 Coding Bootcamp -- Bit Manipulation">
-<meta property="og:url" content="http://yoursite.com/2018/10/04/6-11601-bit-manipulation/index.html">
+<meta property="og:title" content="T(N)法分析时间复杂度">
+<meta property="og:url" content="http://yoursite.com/2018/11/06/9-leetcode-time-complexity/index.html">
 <meta property="og:site_name" content="小乌龟的日常">
-<meta property="og:description" content="知识点basic operators对bit进行操作, 0或1  NOT: ～ 取反 AND: &amp;amp; 必须全是1 OR: | 至少一个是1 XOR: ^ 不同是1，相同是0 Left Shift: &amp;lt;&amp;lt; N 左移N位，空位补0，N是整数 Logical Right Shift: &amp;gt;&amp;gt;&amp;gt; N 右移N位，空位补0 Arithmetic Right Shift: &amp;g">
+<meta property="og:description" content="树形分析法：逐层分析，最后累加 T(N) = T(N/2) + O(1)T(N) = T(N/2) + O(1) = T(N/4) + 2O(1) = T(N/8) + 3O(1) = … = T(1) + logN*O(1) = O(logN)  解释：把规模为N的问题(T(N))分解为T(N/2)需要花费O(1)的时间，把T(N/2)分解为T(N/4)需要花费O(1)，把T(N/4)分解为T(">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-04T17:01:51.909Z">
+<meta property="og:updated_time" content="2018-11-06T20:25:06.263Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="11-601 Coding Bootcamp -- Bit Manipulation">
-<meta name="twitter:description" content="知识点basic operators对bit进行操作, 0或1  NOT: ～ 取反 AND: &amp;amp; 必须全是1 OR: | 至少一个是1 XOR: ^ 不同是1，相同是0 Left Shift: &amp;lt;&amp;lt; N 左移N位，空位补0，N是整数 Logical Right Shift: &amp;gt;&amp;gt;&amp;gt; N 右移N位，空位补0 Arithmetic Right Shift: &amp;g">
+<meta name="twitter:title" content="T(N)法分析时间复杂度">
+<meta name="twitter:description" content="树形分析法：逐层分析，最后累加 T(N) = T(N/2) + O(1)T(N) = T(N/2) + O(1) = T(N/4) + 2O(1) = T(N/8) + 3O(1) = … = T(1) + logN*O(1) = O(logN)  解释：把规模为N的问题(T(N))分解为T(N/2)需要花费O(1)的时间，把T(N/2)分解为T(N/4)需要花费O(1)，把T(N/4)分解为T(">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/04/6-11601-bit-manipulation/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/11/06/9-leetcode-time-complexity/"/>
 
 
 
 
 
-  <title>11-601 Coding Bootcamp -- Bit Manipulation | 小乌龟的日常</title>
+  <title>T(N)法分析时间复杂度 | 小乌龟的日常</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/6-11601-bit-manipulation/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/06/9-leetcode-time-complexity/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jieni Zhang">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">11-601 Coding Bootcamp -- Bit Manipulation</h1>
+          <h1 class="post-title" itemprop="name headline">T(N)法分析时间复杂度</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-04T12:03:01-04:00">
-                2018-10-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-06T14:35:29-05:00">
+                2018-11-06
               </time>
             
 
@@ -305,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/11-601-Coding-Bootcamp/" itemprop="url" rel="index">
-                    <span itemprop="name">11-601 Coding Bootcamp</span>
+                  <a href="/categories/Leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">Leetcode</span>
                   </a>
                 </span>
 
@@ -347,39 +347,25 @@
       
 
       
-        <h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><h2 id="basic-operators"><a href="#basic-operators" class="headerlink" title="basic operators"></a>basic operators</h2><p>对bit进行操作, 0或1</p>
+        <p>树形分析法：逐层分析，最后累加</p>
+<h1 id="T-N-T-N-2-O-1"><a href="#T-N-T-N-2-O-1" class="headerlink" title="T(N) = T(N/2) + O(1)"></a>T(N) = T(N/2) + O(1)</h1><p>T(N) = T(N/2) + O(1) = T(N/4) + 2<em>O(1) = T(N/8) + 3</em>O(1) = … = T(1) + logN*O(1) = O(logN)</p>
 <ul>
-<li>NOT: ～ 取反</li>
-<li>AND: &amp; 必须全是1</li>
-<li>OR: | 至少一个是1</li>
-<li>XOR: ^ 不同是1，相同是0</li>
-<li>Left Shift: &lt;&lt; N 左移N位，空位补0，N是整数</li>
-<li>Logical Right Shift: &gt;&gt;&gt; N 右移N位，空位补0</li>
-<li>Arithmetic Right Shift: &gt;&gt; N 右移N位，空位补最高位的值</li>
-<li>Rotate: 没有直接操作符</li>
+<li>解释：把规模为N的问题(T(N))分解为T(N/2)需要花费O(1)的时间，把T(N/2)分解为T(N/4)需要花费O(1)，把T(N/4)分解为T(N/8)需要花费O(1)的时间……，最后分解到T(1)需要O(1)的时间，每层需要O(1)时间，共logN层，累加得到时间复杂度为O(logN)</li>
+<li>例子：binary search (array or BST)</li>
 </ul>
-<h2 id="bit-masking"><a href="#bit-masking" class="headerlink" title="bit masking"></a>bit masking</h2><p>useful, 找到V的部分bits</p>
+<h1 id="T-N-T-N-2-O-N"><a href="#T-N-T-N-2-O-N" class="headerlink" title="T(N) = T(N/2) + O(N)"></a>T(N) = T(N/2) + O(N)</h1><p>T(N) = T(N/2) + O(N) = T(N/4) + (O(N)+O(N/2)) = T(N/8) + (O(N)+O(N/2)+O(N/4)) = … = T(1) + O(N+N/2+N/4+…+1) = O(N)</p>
 <ul>
-<li>V | M: 0101 0101 | 1111 0000 = 1111 1010 M是1的部分全1，M是0的部分保留</li>
-<li>V &amp; M: 0101 0101 &amp; 1111 0000 = 0101 0000 M是1的部分保留，M是0的部分全0</li>
-<li>V ^ M: 0101 0101 ^ 1111 0000 = 1010 0101 M是1的部分取反，M是0的部分保留</li>
+<li>解释：把T(N)分解为T(N/2)需要花费O(1)的时间，把T(N/2)分解为T(N/4)需要花费O(N/2)的时间，把T(N/4)分解为T(N/8)需要花费O(N/4)的时间，……，最后分解到T(1)需要花费O(1)的时间，每层时间累加N+N/2+N/4+…+1最后得到时间复杂度为O(N)</li>
 </ul>
-<p>用AND和SHIFT得到部分bits: (V &amp; M) &gt;&gt;&gt; S</p>
+<h1 id="T-N-2T-N-2-O-1"><a href="#T-N-2T-N-2-O-1" class="headerlink" title="T(N) = 2T(N/2) + O(1)"></a>T(N) = 2T(N/2) + O(1)</h1><p>T(N) = 2T(N/2) + O(1) = 4T(N/4) + (O(1)+2<em>O(1)) = 8T(N/8) + (O(1)+2</em>O(1)+4*O(1)) = … = O(1+2+4+8+…+N) = O(2N-1) = O(N)</p>
 <ul>
-<li>(1001 0011 &amp; 1111 0000) &gt;&gt;&gt; 4 = 1001</li>
-<li>(1001 0011 &amp; 0011 1100) &gt;&gt;&gt; 2 = 0100</li>
-<li>(1001 0011 &amp; 0000 1111) &gt;&gt;&gt; 0 = 1001</li>
+<li>解释：把T(N)分解为T(N/2)需要花费O(1)的时间，但两个T(N/2)都需要遍历，因此系数也要不断累加，每一层的时间分别为O(1), O(2), O(4), …, O(N)，共logN层，最后把每一层的时间加起来</li>
+<li>例子：binary search with duplicates</li>
 </ul>
-<p>用OR和SHIFT插入部分bits: (V &amp; M) | (B &lt;&lt; S)</p>
+<h1 id="T-N-2T-N-2-O-N"><a href="#T-N-2T-N-2-O-N" class="headerlink" title="T(N) = 2T(N/2) + O(N)"></a>T(N) = 2T(N/2) + O(N)</h1><p>T(N) = 2T(N/2) + O(N) = 4T(N/4) + (O(N)+2O(N/2)) = 8T(N/8) + (O(N)+2O(N/2)+4O(N/4)) = … = NT(1) + O(N+N+N+…+N) = O(NlogN)</p>
 <ul>
-<li>(1001 0011 &amp; 0000 1111) | (0110 &lt;&lt; 4) = 0110 0011</li>
-<li>(1001 0011 &amp; 0011 1100) | (0110 &lt;&lt; 2) = 1001 1011</li>
-<li>(1001 0011 &amp; 1111 0000) | (0110 &lt;&lt; 0) = 1001 0110</li>
-</ul>
-<p>Tricks</p>
-<ul>
-<li>左移1位 = 原数 * 2</li>
-<li>右移1位 = 原数 / 2</li>
+<li>解释：把T(N)分解为T(N/2)需要花费O(N)的时间，把2个T(N/2)分解为T(N/4)需要花费2个O(N/2)的时间，把4个T(N/4)分解为T(N/8)需要花费4个O(N/4)的时间，……，最后分解到T(1)需要花费N个O(1)的时间，每层时间均为O(N)，共logN层，最后得到时间复杂度为O(NlogN)</li>
+<li>例子: merge sort, quick sort</li>
 </ul>
 
       
@@ -398,9 +384,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/coding-bootcamp/" rel="tag"># coding bootcamp</a>
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
           
-            <a href="/tags/bit-manipulation/" rel="tag"># bit manipulation</a>
+            <a href="/tags/time-complexity/" rel="tag"># time complexity</a>
           
         </div>
       
@@ -413,8 +399,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/03/5-11601-dynamic-programming/" rel="next" title="11-601 Coding Bootcamp -- Dynamic Programming">
-                <i class="fa fa-chevron-left"></i> 11-601 Coding Bootcamp -- Dynamic Programming
+              <a href="/2018/10/14/8-11601-string-and-array/" rel="next" title="11-601 Coding Bootcamp -- Midterm Review">
+                <i class="fa fa-chevron-left"></i> 11-601 Coding Bootcamp -- Midterm Review
               </a>
             
           </div>
@@ -422,10 +408,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/08/7-11601-searching/" rel="prev" title="11-601 Coding Bootcamp -- Searching">
-                11-601 Coding Bootcamp -- Searching <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -557,7 +539,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#知识点"><span class="nav-number">1.</span> <span class="nav-text">知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#basic-operators"><span class="nav-number">1.1.</span> <span class="nav-text">basic operators</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bit-masking"><span class="nav-number">1.2.</span> <span class="nav-text">bit masking</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#T-N-T-N-2-O-1"><span class="nav-number">1.</span> <span class="nav-text">T(N) = T(N/2) + O(1)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#T-N-T-N-2-O-N"><span class="nav-number">2.</span> <span class="nav-text">T(N) = T(N/2) + O(N)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#T-N-2T-N-2-O-1"><span class="nav-number">3.</span> <span class="nav-text">T(N) = 2T(N/2) + O(1)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#T-N-2T-N-2-O-N"><span class="nav-number">4.</span> <span class="nav-text">T(N) = 2T(N/2) + O(N)</span></a></li></ol></div>
             
 
           </div>
